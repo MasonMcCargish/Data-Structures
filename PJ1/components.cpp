@@ -28,10 +28,11 @@ int main() {
    list<int> x;
    adjList.push_back(x);
 
-   int input, value;
+   int i1, i2, value;
    std::string line;
    list<int>::iterator begin, end;
 
+   //Creaiting the graph
    int i = 0;
    while (getline(read, line)) {
    	std::istringstream lineStream(line);
@@ -44,10 +45,19 @@ int main() {
 	   ++i;
 	}
 
-	printAdjList(adjList);
+	//MAIN LOOP
+	while(i1 != -1) {
+		cout << "The adjacency list for your graph is: " << "\n";
+		printAdjList(adjList);
 
-	merge2(adjList[0], adjList[3]);
-	printAdjList(adjList);
+		cout << "\nEnter two list ids to potentially merge together or -1 to quit: ";
+		cin >> i1 >> i2;
+
+		if(merge2(adjList[i1], adjList[i2]))
+			cout << "The lists are merged.";
+		else
+			cout << "The lists are not merged.";
+	}
 
 	read.close();
 	return 0;
